@@ -1,0 +1,6 @@
+D:\MyGit\New folder\VisualStudioShortCuts\UsingTaskLib\UsingTaskLib\bin\Debug\UsingTaskLib.exe.config
+D:\MyGit\New folder\VisualStudioShortCuts\UsingTaskLib\UsingTaskLib\obj\Debug\UsingTaskLib.csprojResolveAssemblyReference.cache
+D:\MyGit\New folder\VisualStudioShortCuts\UsingTaskLib\UsingTaskLib\bin\Debug\UsingTaskLib.exe
+D:\MyGit\New folder\VisualStudioShortCuts\UsingTaskLib\UsingTaskLib\bin\Debug\UsingTaskLib.pdb
+D:\MyGit\New folder\VisualStudioShortCuts\UsingTaskLib\UsingTaskLib\obj\Debug\UsingTaskLib.exe
+D:\MyGit\New folder\VisualStudioShortCuts\UsingTaskLib\UsingTaskLib\obj\Debug\UsingTaskLib.pdb
