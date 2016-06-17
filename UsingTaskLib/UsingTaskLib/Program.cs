@@ -1,18 +1,16 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace UsingTaskLib
 {
-
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             //var watch = new Stopwatch();
             //watch.Start();
@@ -54,20 +52,18 @@ namespace UsingTaskLib
         {
             Task.Factory.StartNew(() => { Console.WriteLine("Hello Task library!"); });
 
-            var task1 = new Task(new Action(PrintMessage));
+            var task1 = new Task(new Action(DisplayOutPut));
             task1.Start();
 
 
-            var task2 = new Task(delegate { PrintMessage(); });
+            var task2 = new Task(delegate { DisplayOutPut(); });
             task2.Start();
 
-            var task3 = new Task(() => PrintMessage());
+            var task3 = new Task(() => DisplayOutPut());
             task3.Start();
 
-            var task4 = new Task(() => { PrintMessage(); });
-            task4.Start();
-
-
+            var task4 = new Task(() => { DisplayOutPut(); });
+            task4.Start(); 
         }
 
         private static void ParrallelForEach()
@@ -87,7 +83,8 @@ namespace UsingTaskLib
 
             Console.Write("Total time for downloading is {0}", watch1.Elapsed.TotalSeconds);
         }
-        static void wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+
+        private static void wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
         }
 
@@ -96,19 +93,19 @@ namespace UsingTaskLib
             var watch = new Stopwatch();
             var methodFactory = new MethodFactory();
             watch.Start();
-            var bookingTask = new[]
-							{
-								Task.Factory.StartNew(() =>
-								{
-								    methodFactory.Flight_book(1000);
-								}),Task.Factory.StartNew(() =>
-								{
-                                    methodFactory.Hotel_book(2000);
-								}),Task.Factory.StartNew(() =>
-								{
-                                    methodFactory.Car_book(3000);
-								})
-							};
+            var bookingTask =new[]
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    methodFactory.Flight_book(1000);
+                }),Task.Factory.StartNew(() =>
+                {
+                    methodFactory.Hotel_book(2000);
+                }),Task.Factory.StartNew(() =>
+                {
+                    methodFactory.Car_book(3000);
+                })
+            };
             Task.WaitAll(bookingTask);
             Console.WriteLine("Time taken to TaskArray Demo {0}", watch.Elapsed.TotalSeconds);
         }
@@ -125,10 +122,12 @@ namespace UsingTaskLib
             {
                 methodFactory.Flight_book(1000);
             }, cancelToken.Token);
+
             var methodB = Task.Factory.StartNew(() =>
             {
                 methodFactory.Hotel_book(2000);
             }, cancelToken.Token);
+
             var methodC = Task.Factory.StartNew(() =>
             {
                 methodFactory.Car_book(3000);
@@ -163,7 +162,7 @@ namespace UsingTaskLib
 
         public static async Task DoWork1()
         {
-            await Task.Run(() => PrintMessage());
+            await Task.Run(() => DisplayOutPut());
         }
 
         public static async Task DoWork2()
@@ -176,25 +175,24 @@ namespace UsingTaskLib
             return a + b;
         }
 
-        private static void PrintMessage()
+        private static void DisplayOutPut()
         {
-
             Console.WriteLine("Hello Task library!");
         }
-        static void Function1() { Console.WriteLine("F1()"); }
-        static void Function2() { Console.WriteLine("F2()"); }
-        static void Function3() { Console.WriteLine("F3()"); }
 
-        static void TestInvoke()
+        private static void Function1() { Console.WriteLine("F1()"); }
+        private static void Function2() { Console.WriteLine("F2()"); }
+        private static void Function3() { Console.WriteLine("F3()"); }
+
+        private static void TestInvoke()
         {
             Parallel.Invoke(Function1, Function2, Function3);
-
             var myList = new List<int>();
             myList.AsParallel().ForAll(i => { /*DO SOMETHING*/ });
             Parallel.ForEach(myList, i => { /*DO SOMETHING*/ });
         }
 
-        static void TestFor()
+        private static void TestFor()
         {
             Parallel.For(0, 100, i => Console.WriteLine(i));
 
@@ -202,15 +200,15 @@ namespace UsingTaskLib
                 Console.WriteLine(i);
         }
 
-        static void TestForState()
+        private static void TestForState()
         {
             Parallel.For(0, 100, (i, state) =>
             {
-                Console.WriteLine(i); if (i == 50) state.Break();
+                Console.WriteLine(i);
+                if (i == 50)
+                    state.Break();
             });
         }
-
-
         #endregion
     }
 }
