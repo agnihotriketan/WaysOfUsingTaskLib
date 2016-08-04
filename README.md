@@ -1,4 +1,4 @@
-# WaysOfUsingTaskLib
+# Ways Of Using Task Lib
 
 Nowadays, we are using multiple core systems. We must write our .NET applications in such way that we must utilize complete computing power of machine.
 
